@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLACKMARKET | Underground Digital Marketplace</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'JetBrains Mono', monospace; }
+        body { background-color: #030712; color: #f3f4f6; }
+        
+        /* CRT Scanline Effect */
+        .scanlines {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.03;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0,255,0,0.1) 2px,
+                rgba(0,255,0,0.1) 4px
+            );
+        }
+        
+        /* Glitch Animation */
+        .glitch {
+            position: relative;
+            animation: glitch-skew 1s infinite;
+        }
+        @keyframes glitch-skew {
+            0% { transform: skew(0deg); }
+            20% { transform: skew(-2deg); }
+            40% { transform: skew(2deg); }
+            60% { transform: skew(-1deg); }
+            80% { transform: skew(1deg); }
+            100% { transform: skew(0deg); }
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #030712; }
+        ::-webkit-scrollbar-thumb { background: #7f1d1d; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #dc2626; }
+        
+        /* Glow Effects */
+        .glow-red { box-shadow: 0 0 20px rgba(220, 38, 38, 0.3); }
+        .hover-glow:hover { box-shadow: 0 0 30px rgba(220, 38, 38, 0.5); }
+    </style>
+</head>
+<body>
+    <!-- CRT Effect -->
+    <div class="scanlines"></div>
+    
+    <!-- Content akan sama dengan widget di atas -->
+    <!-- Copy semua HTML dari widget ke sini -->
+    
+    <script>
+        // Typing effect for hero text
+        const heroText = document.querySelector('.hero-type');
+        if(heroText) {
+            const text = heroText.textContent;
+            heroText.textContent = '';
+            let i = 0;
+            const typeWriter = () => {
+                if (i < text.length) {
+                    heroText.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 50);
+                }
+            };
+            typeWriter();
+        }
+        
+        // Random glitch effect on cards
+        setInterval(() => {
+            const cards = document.querySelectorAll('.glitch-card');
+            const randomCard = cards[Math.floor(Math.random() * cards.length)];
+            if(randomCard) {
+                randomCard.style.transform = 'translateX(2px)';
+                setTimeout(() => {
+                    randomCard.style.transform = 'translateX(-2px)';
+                    setTimeout(() => {
+                        randomCard.style.transform = 'translateX(0)';
+                    }, 50);
+                }, 50);
+            }
+        }, 3000);
+    </script>
+</body>
+</html>
